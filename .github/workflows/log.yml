@@ -2,8 +2,7 @@ name: log
 
 on:
   push:
-    branches:
-      - dev
+    branches: [dev, feature/test2]
 
 jobs:
   log:
