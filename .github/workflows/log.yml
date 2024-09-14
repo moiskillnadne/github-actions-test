@@ -1,6 +1,9 @@
 name: log
 
-on: [push]
+on:
+  push:
+    branches:
+      - dev
 
 jobs:
   log:
