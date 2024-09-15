@@ -1,0 +1,14 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Connect to server and run bash script
+      run: |
+          ssh -o StrictHostKeyChecking=no root@139.162.144.245 'sh /root/bash/github_actions/testvideo/test.sh'
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
