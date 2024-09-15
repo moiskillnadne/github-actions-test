@@ -7,8 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Connect to server and run bash script
-      run: |
+      - name: Add SSH config
+        run: |
+          echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
+      - name: Connect to server and run bash script
+        run: |
           ssh -o StrictHostKeyChecking=no root@139.162.144.245 'sh /root/bash/github_actions/testvideo/test.sh'
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
