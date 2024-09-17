@@ -22,7 +22,7 @@ jobs:
         run: node -v
       
       - name: Install deps
-        run: npm install
+        run: npm install --force
 
       - name: Run lint
         run: npm run lint
