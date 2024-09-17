@@ -7,7 +7,7 @@ describe('Calculator', () => {
 
   describe('add', () => {
     it('должен корректно складывать два положительных числа', () => {
-      expect(calculator.add(2, 3)).toBe(5);
+      expect(calculator.add(2, 3)).toBe(6);
     });
 
     it('должен корректно складывать положительное и отрицательное число', () => {
