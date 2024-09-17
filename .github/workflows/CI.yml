@@ -1,6 +1,8 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches: [dev]
 
 jobs:
   lint:
@@ -42,5 +44,5 @@ jobs:
       - name: Install deps
         run: npm install --force
 
-      - name: Run lint
+      - name: Run test
         run: npm run test
