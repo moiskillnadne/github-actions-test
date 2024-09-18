@@ -1,8 +1,8 @@
 name: Deploy
 
 on:
-  push:
-    branches: [dev]
+  release:
+    types: [published]
 
 jobs:
   deploy:
@@ -14,6 +14,11 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: Extract Tag
+        id: extract_tag
+        run: echo "RELEASE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+  
+
       - name: Connect to server and run script
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "sh ${{ secrets.PATH_TO_SCRIPT }}"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "export RELEASE_TAG=${{ env.RELEASE_TAG }} && sh ${{ secrets.PATH_TO_SCRIPT }}"
